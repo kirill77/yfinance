@@ -297,7 +297,7 @@ class TickerBase():
         ticker_url = "{}/{}".format(self._scrape_url, self.ticker)
 
         # get info and sustainability
-        data = utils.get_json(ticker_url, proxy, self.session)
+        data, self.fullFunJSON = utils.get_json(ticker_url, proxy, self.session)
 
         # holders
         try:
@@ -411,7 +411,7 @@ class TickerBase():
             pass
 
         # get fundamentals
-        data = utils.get_json(ticker_url+'/financials', proxy, self.session)
+        data, self.fullFunJSON = utils.get_json(ticker_url+'/financials', proxy, self.session)
 
         # generic patterns
         for key in (

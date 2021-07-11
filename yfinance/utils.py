@@ -62,7 +62,8 @@ def get_json(url, proxy=None, session=None):
 
     json_str = html.split('root.App.main =')[1].split(
         '(this)')[0].split(';\n}')[0].strip()
-    data = _json.loads(json_str)[
+    fullJSON = _json.loads(json_str);
+    data = fullJSON[
         'context']['dispatcher']['stores']['QuoteSummaryStore']
 
     # return data
@@ -70,7 +71,7 @@ def get_json(url, proxy=None, session=None):
     new_data = _re.sub(
         r'\{[\'|\"]raw[\'|\"]:(.*?),(.*?)\}', r'\1', new_data)
 
-    return _json.loads(new_data)
+    return _json.loads(new_data), fullJSON
 
 
 def camel2title(o):
