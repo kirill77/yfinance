@@ -58,7 +58,7 @@ def get_json(url, proxy=None, session=None):
     if "QuoteSummaryStore" not in html:
         html = session.get(url=url, proxies=proxy).text
         if "QuoteSummaryStore" not in html:
-            return {}
+            return {}, {}
 
     json_str = html.split('root.App.main =')[1].split(
         '(this)')[0].split(';\n}')[0].strip()
